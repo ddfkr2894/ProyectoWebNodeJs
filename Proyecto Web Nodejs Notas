@@ -1,0 +1,59 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+------------	Notas de Node JS	-------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+Lo primero fue instalar la última versión de NodeJS yendo a google y descargandolo directamente de ahí, posteriormnete nos dirigimos a la terminar y nos direccionamos a nuestro proyecto en donde colocaremos el siguiente comando:
+ 'sudo apt install npm'
+posteriormnete, la terminal ya podrá reconocer los comandos npm, posteriormnete escribimos en la terminal
+ 'npm init --yes'
+Esto para crear nuestro archivo package.json. El cual se creará automaticamente una vez ejecutado el comando
+ 
+Una vez hecho eso, instalamos ahora los módulos externos que ocuparemos con el comando 'npm install express ejs morgan'
+
+(cada modulo que se instale automaticamente se irá añadiendo a nuestro archivo package.json)
+
+{
+ "name": "proyecto-web-nodejs",				--> Nombre del proyecto (debe ser escrito en LOWERCASE)
+ "version": "1.0.0",						--> Control de versiones
+ "description": "",						--> Aquí podemos agregar una descripcion
+ "main": "index.js",						--> Indicamos cual es el archivo principal que ejecutara
+ "scripts": {							--> Declaración de comandos
+   "test": "echo \"Error: no test specified\" && exit 1",
+   "start": "node source",
+   "dev": "nodemon source"
+ },
+ "keywords": [],						--> Futuras Keywords
+ "author": "",							--> Aquí podemos escribir el autor del proyecto
+ "license": "ISC",
+ "dependencies": {						--> Estos son los modulos que fueron instalados
+   "ejs": "^3.1.6",
+   "express": "^4.17.1",
+   "morgan": "^1.10.0"
+ },
+ "devDependencies": {					--> Este modulo se instaló posteriormnete usando el comando npm install nodemon -D
+   "nodemon": "^2.0.12"
+ }
+}
+
+Para mandar llamar uno de los comandos que declaramos lo hacemos de la siguiente manera
+'npm run ${comando}' por ejemplo 'npm run dev' 
+para correr el que estaremos ejecutando mientras desarrollamos la interfaz
+
+Dentro del archivo index.js podemos comenzar ahora a requerir nuestros modulos de la siguiente forma: Declaramos una constante usando el
+metodo 'require' con el mismo nombre del modulo (por buenas practicas, se recomienda hacer eso), 
+'const express = require('express');'
+
+El módulo ejs es para que podamos extender la funcionalidad del HTML (dandole la capacidad de tener variaables, bucles, condicionales o funciones).
+Ya no se necesita importar este modulo por que ejs tiene una integracion con este modulo, entonces simplemente se 
+Se declara el motor de plantilla o motor de vista como ejs de la siguiente forma
+'app.set('view engine', 'ejs');'
+
+Una vez hecho eso cambiamos el nombre de 'index.html' a 'index.ejs' en dónde ahora por medio de la sintaxis <% %> podremos
+añadir variables, bucles, condicionales o funciones y eliminamos la sentencia 
+'res.sendFile(path.join(__dirname, '/views/index.html'));'
+y la cambiamos por:
+'res.render('index');'
+al mismo tiempo en la sección de Settings le indicamos
+'app.set('views', path.join(__dirname, 'views'));'
+para que la sentencia de 'res.render('index');' pueda funcionar correctamente, de lo contrario mandará error
