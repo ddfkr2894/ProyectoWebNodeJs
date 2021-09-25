@@ -57,3 +57,12 @@ y la cambiamos por:
 al mismo tiempo en la sección de Settings le indicamos
 'app.set('views', path.join(__dirname, 'views'));'
 para que la sentencia de 'res.render('index');' pueda funcionar correctamente, de lo contrario mandará error
+
+
+Este comando sirve para ver en PID que está ocupadno el puerto
+sudo lsof -i {PUERTO}
+Ejemplo
+sudo lsof -i :3000
+Con este comando liberamos lo que se esté ejectuando
+kill -9 {PID}
+kill -9 10487
